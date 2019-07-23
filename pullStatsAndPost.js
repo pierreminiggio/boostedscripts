@@ -72,13 +72,6 @@ function letsGo () {
   console.log('Récupération des tops');
 
   // Appelle la fonction pullTops() et affichage les données retournées
-  console.log('.');
-  console.log('.');
-  console.log('.');
-  console.log('.');
-  console.log('.');
-  console.log('.');
-  console.log('.');
   pullTops(ids).then(tops => {
     var qualityContent = '';
     var i = 0;
@@ -128,7 +121,7 @@ function letsGo () {
 }
 
 letsGo();
-
-// cron.schedule('*/3 * * * *', () => {
-//   letsGo();
-// });
+// Tous les dimanches à 12h si tout se passe bien
+cron.schedule('0 12 * * 0', () => {
+  letsGo();
+});
