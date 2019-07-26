@@ -120,7 +120,7 @@ function letsGo () {
   });
 }
 
-letsGo();
+//letsGo();
 // Tous les dimanches à 12h si tout se passe bien
 cron.schedule('0 12 * * 0', () => {
   letsGo();
