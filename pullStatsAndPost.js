@@ -73,6 +73,7 @@ function letsGo () {
 
   // Appelle la fonction pullTops() et affichage les données retournées
   pullTops(ids).then(tops => {
+    // console.log(tops);
     var qualityContent = '';
     var i = 0;
     for (let [key, value] of Object.entries(tops)) {
@@ -113,9 +114,11 @@ function letsGo () {
     }
     qualityContent = "Le temps est venu d'annoncer les résultats tant attendus ! :o \nVoici les 10 boosted les plus actifs de cette semaine ! " + qualityContent;
 
+    console.log(qualityContent);
+
     // Postage sur le groupe des boosted
     postToBoostedRealm(ids, qualityContent).then(result => {
-
+      console.log('posté');
     });
   });
 }
