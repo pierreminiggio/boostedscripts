@@ -63,6 +63,8 @@ const postToBoostedRealm = async (ids, qualityContent) => {
   // click submit
   await page.click('button[data-testid="react-composer-post-button"][type="submit"]');
 
+  await page.waitFor(3000); // fait une pause
+
   // Retourner les données (et fermer le navigateur)
   browser.close();
   return [];
