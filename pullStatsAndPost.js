@@ -43,7 +43,7 @@ const postToBoostedRealm = async (ids, qualityContent) => {
   await page.click(
     '#loginbutton',
   )
-  await page.waitFor(1000); // fait une pause d'une seconde
+  await page.waitFor(3000); // fait une pause d'une seconde
 
   // On va sur le groupe des boosted
   await page.goto('https://www.facebook.com/groups/'+ids.group+'/');
@@ -55,13 +55,17 @@ const postToBoostedRealm = async (ids, qualityContent) => {
   await page.keyboard.press('KeyP');
 
   // wait for emoji icon as proxy for "loaded and post ready"
-  await page.waitFor('button[data-testid="react-composer-post-button"][type="submit"]');
+  const buttonSelector = 'div#pagelet_group_composer button.selected[type="submit"]'
+  // old button selector: button[data-testid="react-composer-post-button"][type="submit"]
+
+  await page.waitFor(buttonSelector)
+
 
   // keyboard shortcut put focus in place so we can just type
   await page.keyboard.type(qualityContent);
 
   // click submit
-  await page.click('button[data-testid="react-composer-post-button"][type="submit"]');
+  await page.click(buttonSelector)
 
   await page.waitFor(3000); // fait une pause
 
@@ -125,7 +129,7 @@ function letsGo () {
   });
 }
 
-//letsGo();
+// letsGo();
 // Tous les dimanches à 12h si tout se passe bien
 cron.schedule('0 12 * * 0', () => {
   letsGo();
